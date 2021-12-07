@@ -63,7 +63,7 @@ body5.Joint = jnt5;
 body11=rigidBody('body11');
 body11.Mass=1;
 jnt11 = rigidBodyJoint('jnt11','fixed');
-tform = trvec2tform([0, Llolen, 0]);
+tform = trvec2tform([0, 0, -Llolen]);
 setFixedTransform(jnt11,tform);
 body11.Joint = jnt11;
 
@@ -96,7 +96,6 @@ jnt8.JointAxis=[0,0,1];
 body8.Joint = jnt8;
 
 
-
 %left lower arm
 body9=rigidBody('body9');
 body9.Mass=7;
@@ -111,7 +110,7 @@ body9.Joint = jnt9;
 body12=rigidBody('body12');
 body12.Mass=1;
 jnt12 = rigidBodyJoint('jnt12','fixed');
-tform = trvec2tform([0,Llolen, 0]);
+tform = trvec2tform([0, 0 , -Llolen]);
 setFixedTransform(jnt12,tform);
 body12.Joint = jnt12;
 

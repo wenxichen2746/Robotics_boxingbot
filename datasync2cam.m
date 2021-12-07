@@ -39,8 +39,8 @@ datasyn(1:tlength,[xindex([li,24]),yindex([li,24]),zindex([li,24])])=data2(1:tle
 save('coorddatasync.mat','datasyn')
 
 f1=figure();
-% for frame=200
-for frame=1:1:400
+for frame=200
+% for frame=1:1:400
 clf(f1)
 % plot3(data1(frame,xindex(ai)),data1(frame,yindex(ai)),-data1(frame,zindex(ai)),'b-')
 % hold on

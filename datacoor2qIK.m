@@ -13,8 +13,7 @@ for i=1:length(xyz_p)
     
     pm1=sign(norm(dot(cross(vec25_f0,vec25),[0,0,1])));
     qsTrack(i,1)=pm1*vecAng(vec25,vec25_f0);%trunk lean angel
-    
-    
+        
     frontvec=cross([0,0,-1],vec25);
     vec23=xyz(3,:)-xyz(2,:);
     vec23_p=projec2plain(vec23,vec25);
@@ -22,27 +21,32 @@ for i=1:length(xyz_p)
     qsTrack(i,2)= pm2*vecAng(vec23,[0,0,-1]);
     vec56=xyz(6,:)-xyz(5,:);
     vec56_p=projec2plain(vec56,vec25);
+    invq3=cross(vec25,-vec23_p);
+    q7=cross(-vec25,vec56_p);
+    
     pm6=sign(norm(dot(cross([0,0,-1],vec56_p),-vec25)));
     qsTrack(i,6)=pm6*vecAng(vec56,[0,0,-1]);%raise arm forward angel
     
-    pm3=sign(norm(dot(-vec25,vec23)));
-    qsTrack(i,3)=pi/2-pm3*vecAng(vec23,-vec25);
-    pm7=sign(norm(dot(vec25,vec56)));
-    qsTrack(i,7)=pi/2-pm7*vecAng(vec56,vec25);%raise arm sideway angel
+    pm3=sign(norm(dot(cross(vec23,vec23_p),invq3)));
+    qsTrack(i,3)=pm3*vecAng(vec23,vec23_p);
+    pm7=sign(norm(dot(cross(vec56_p,vec56),q7)));
+    qsTrack(i,7)=pm7*vecAng(vec56_p,vec56);%raise arm sideway angel
     
     vec34=xyz(4,:)-xyz(3,:);
     vec67=xyz(7,:)-xyz(6,:);%elbow angel
     
-%     pm5=sign(norm(dot(cross(vec34,-vec23),-vec25)));
-    qsTrack(i,5)=pm5*vecAng(vec34,-vec23)-pi/2;
-    pm9=sign(norm(dot(cross(vec67,-vec56),-vec25)));
-    qsTrack(i,9)=pm9*vecAng(vec67,-vec56)-pi/2;
+    pm5=sign(norm(dot(cross(vec23,vec34),-vec25)));
+    qsTrack(i,5)=pm5*vecAng(vec34,vec23);
+    pm9=sign(norm(dot(cross(vec56,vec67),-vec25)));
+    qsTrack(i,9)=pm9*vecAng(vec67,vec56);
     
     vec34_p=projec2plain(vec34,vec23);
     vec67_p=projec2plain(vec67,vec56);
     
-    qsTrack(i,4)=vecAng(vec34_p,frontvec);
-    qsTrack(i,8)=vecAng(vec67_p,frontvec);
+    pm4=sign(norm(dot(cross(vec34_p,invq3),-vec23)));
+    qsTrack(i,4)=pm4*vecAng(vec34_p,invq3);
+    pm8=-sign(norm(dot(cross(q7,vec67_p),-vec56)));
+    qsTrack(i,8)=pm8*vecAng(vec67_p,q7);
 end
 
 N=size(qsTrack,1);
