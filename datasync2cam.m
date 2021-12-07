@@ -2,7 +2,7 @@ clc
 clear
 data1=load('coords_1.csv');
 data2=load('coords_2.csv');
-close all
+
 %%
 partnum=33;
 xindex=(1:partnum)*3-2;% 1 horizontal in frame
@@ -38,9 +38,9 @@ datasyn(1:tlength,[xindex([ri,25]),yindex([ri,25]),zindex([ri,25])])=data1(1:tle
 datasyn(1:tlength,[xindex([li,24]),yindex([li,24]),zindex([li,24])])=data2(1:tlength,[xindex([li,24]),yindex([li,24]),zindex([li,24])]);
 save('coorddatasync.mat','datasyn')
 
-f1=figure();
-for frame=200
-% for frame=1:1:400
+f1=figure(1);
+% for frame=200
+for frame=1:1:400
 clf(f1)
 % plot3(data1(frame,xindex(ai)),data1(frame,yindex(ai)),-data1(frame,zindex(ai)),'b-')
 % hold on
@@ -52,11 +52,12 @@ plot3(datasyn(frame,xindex(ai)),datasyn(frame,yindex(ai)),-datasyn(frame,zindex(
 hold on
 
 % plot3(ox1,oy1,-oz1,'bo')
-view([cos(0.01*frame),sin(0.01*frame),0])
+% view([cos(0.01*frame),sin(0.01*frame),0])
+view(3)
 xlim([-1,1])
 ylim([-1,1])
 zlim([-1,1])
-
+title('Data sync from 2 cam')
 grid on
 pause(0.01)
 xlabel('x')

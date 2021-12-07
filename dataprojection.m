@@ -46,7 +46,7 @@ end
 
 lineindex=[4,3,2,1,5,6,7];
 fistindex=[4,7];
-f1=figure();
+f1=figure(1);
 for frame=1:1:400
 % for frame=20
 clf(f1)
@@ -62,7 +62,7 @@ view(3)
 xlim([-1,1])
 ylim([-1,1])
 zlim([-1,1])
-
+title('Projection to robot workspace')
 grid on
 pause(0.01)
 xlabel('x')

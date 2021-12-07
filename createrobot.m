@@ -114,17 +114,21 @@ tform = trvec2tform([0, 0 , -Llolen]);
 setFixedTransform(jnt12,tform);
 body12.Joint = jnt12;
 
-if visual
-    addVisual(body1,"mesh",'trunkbox.STL',trvec2tform([-20,-10,-20]))
-    addVisual(body2,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
-    addVisual(body3,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
-    addVisual(body4,"mesh",'400x110x110.STL',trvec2tform([-55,-55,-400]))
-    addVisual(body5,"mesh",'400x110x110.STL',rotm2tform(rotx(90))*trvec2tform([-55,-55,-400]))
-    addVisual(body6,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
-    addVisual(body7,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
-    addVisual(body8,"mesh",'400x110x110.STL',trvec2tform([-55,-55,-400]))
-    addVisual(body9,"mesh",'400x110x110.STL',rotm2tform(rotx(90))*trvec2tform([-55,-55,-400]))
-end
+% if visual
+    addVisual(body1,"mesh",'010104.STL',rotm2tform(roty(90))*trvec2tform([-0.05,-0.05,-0.20]))
+%     addVisual(body2,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
+%     addVisual(body3,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
+    addVisual(body4,"mesh",'00500502.stl',trvec2tform([-0.02,-0.02,-0.300]))
+     addVisual(body8,"mesh",'00500502.stl',trvec2tform([-0.02,-0.02,-0.300]))
+     
+         addVisual(body5,"mesh",'00500502.stl',trvec2tform([-0.02,-0.02,-0.300]))
+     addVisual(body9,"mesh",'00500502.stl',trvec2tform([-0.02,-0.02,-0.300]))
+%     addVisual(body5,"mesh",'400x110x110.STL',rotm2tform(rotx(90))*trvec2tform([-55,-55,-400]))
+%     addVisual(body6,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
+%     addVisual(body7,"mesh",'100mm3cube.STL',trvec2tform([-50,-50,-50]))
+%     addVisual(body8,"mesh",'400x110x110.STL',trvec2tform([-55,-55,-400]))
+%     addVisual(body9,"mesh",'400x110x110.STL',rotm2tform(rotx(90))*trvec2tform([-55,-55,-400]))
+% end
 addBody(robot,body1,'base')
 addBody(robot,body2,'body1')
 addBody(robot,body3,'body2')

@@ -58,29 +58,59 @@ toc
 disp({'Simulation finished'})
 %%
 tic
-figure(position=[50,50,1500,800])
+fig=figure(position=[50,50,1500,800]);
 t=0:framegap:simulationtime;
-% qTarget=[0,1,1,1,1,1,1,1,1]'*pi/2*sin(t);
-qindex=[4];
+
+movieframe=1;
 for i=1:length(plotqs)
+% for i=20
    subplot(2,2,1)
    show(boxrobot,plotqs(:,i)')
-   view([0,1,0.5])
+   view([0.8,0.8,0.5])
+   title('Controller output configuration')
    subplot(2,2,3)
    show(boxrobot,plotqs_Target(:,i)')
-   view([0,1,0.5])
+   view([0.8,0.8,0.5])
+   title('Traget configuration')
+   
    subplot(222)
-   plot(t(1:i),plotqs(qindex,1:i)','b-')
-   hold on 
-   plot(t(1:i),plotqs_Target(qindex,1:i)','b--')
-   hold on
+   colorstring1 = ["k-","b-","g-","m-","r-","b-","g-","m-","r-"];
+   colorstring2 = ["k--","b--","g--","m--","r--","b--","g--","m--","r--"];
+   for qindex=1:9
+       p1=plot(t(1:i),plotqs(qindex,1:i)',colorstring1(qindex));
+       hold on 
+       p2=plot(t(1:i),plotqs_Target(qindex,1:i)',colorstring2(qindex));
+       hold on
+   end
+
+   legend({'Controller output','Target angel'},'Location','northwest')
+
+
+%    legend(lins2,'Target angel')
    xlim([t(i)-2,t(i)-0.2])
+   title('Joint Angle')
+   
    subplot(224)
-   plot(t(1:i),plotTorq(qindex,1:i),'r-')
+   plot(t(1:i),plotTorq(:,1:i),'--')
    hold on 
    xlim([t(i)-2,t(i)-0.2])
+   title('Torque on each joint')
+   
    drawnow
    waitfor(framegap)
+    movierecord(movieframe)= getframe(fig);
+    movieframe=movieframe+1;
 end
 toc
 
+
+figure(position=[50,50,1500,800])
+axis off
+movie(movierecord,1,30)
+% mplay(movierecord)
+
+v = VideoWriter('BoxRobotPlot.avi','Motion JPEG AVI');
+v.FrameRate = 30/2;
+open(v)
+writeVideo(v,movierecord)
+close(v)
