@@ -61,7 +61,12 @@ for j=1:9
     qsTrackVel(:,j)=f_prime;
 end
 
-save('qsdata.mat','qsTrack','qsTrackVel')
+for j=1:9
+    qsTrack_extend(:,j)=extendarray(qsTrack(:,j),4);  
+    qsTrackVel_extend(:,j)=extendarray(qsTrackVel(:,j),4);  
+end
+
+save('qsdata.mat','qsTrack','qsTrack_extend','qsTrackVel','qsTrackVel_extend')
 
 function angle=vecAng(a,b)
 angle=atan2(norm(cross(a,b)), dot(a,b));

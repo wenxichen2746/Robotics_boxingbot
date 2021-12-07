@@ -1,7 +1,7 @@
 function jointTorque=boxrobotjointPD(qTarget,qTarVel,qs,qVel)
 % Kp=[1,  1,1,1,   1,   1,1,1, 1]*40;
-Kp=[120,220,50,1,   1,   1,1,1, 1];
-Kd=[60, 50,35,1,   1,   1,1,1, 1];
+Kp=[120, 220,100,100,   100,   1,1,1, 1];
+Kd=[60, 50,80,50,   30,   1,1,1, 1];
 
 jointTorque=Kp.*(qTarget-qs)+Kd.*(qTarVel-qVel);
 
